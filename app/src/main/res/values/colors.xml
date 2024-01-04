@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="s_pink">#F39A9D</color>
+    <color name="moonstone">#6DB1BF</color>
+    <color name="l_blush">#FFEAEC</color>
+    <color name="h_green">#3F6C51</color>
+    <color name="r_violet">#301A4B</color>
+</resources>
