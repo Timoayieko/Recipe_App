@@ -1,18 +1,21 @@
 package com.example.recipeapp
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.recipeapp.adapter.MainCategoryAdapter
+import com.example.recipeapp.adapter.SubCategoryAdapter
 import com.example.recipeapp.databinding.ActivityExploreBinding
+import com.example.recipeapp.entities.Recipes
 
 class ExploreActivity : AppCompatActivity() {
-
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityExploreBinding
+
+    var arrMainCategory = ArrayList<Recipes>()
+    var arrSubCategory = ArrayList<Recipes>()
+
+    var mainCategoryAdapter = MainCategoryAdapter()
+    var subCategoryAdapter = SubCategoryAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,21 +23,29 @@ class ExploreActivity : AppCompatActivity() {
         binding = ActivityExploreBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+//        test data
+        arrMainCategory.add(Recipes(1, "Boiled"))
+        arrMainCategory.add(Recipes(2, "Fried"))
+        arrMainCategory.add(Recipes(3, "Meat"))
+        arrMainCategory.add(Recipes(4, "Vegetables"))
+        arrMainCategory.add(Recipes(5, "Beverages"))
+        arrMainCategory.add(Recipes(6, "Sweet"))
 
-        val navController = findNavController(R.id.nav_host_fragment_content_explore)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        mainCategoryAdapter.setData(arrMainCategory)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-    }
+        arrSubCategory.add(Recipes(1, "Boiled Eggs"))
+        arrSubCategory.add(Recipes(2, "Fried Chicken"))
+        arrSubCategory.add(Recipes(3, "Stir Fry"))
+        arrSubCategory.add(Recipes(4, "Managu"))
+        arrSubCategory.add(Recipes(5, "Sweet Tea"))
+        arrSubCategory.add(Recipes(6, "Cookies"))
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_explore)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+        subCategoryAdapter.setData(arrSubCategory)
+
+        binding.recyclerMainCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerMainCategory.adapter = mainCategoryAdapter
+
+        binding.recyclerSubCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false )
+        binding.recyclerSubCategory.adapter = subCategoryAdapter
     }
 }

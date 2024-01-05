@@ -13,4 +13,6 @@ interface RecipeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun  insertRecipe(recipe: Recipes)
+
+    // TODO: SQL functions 
 }
