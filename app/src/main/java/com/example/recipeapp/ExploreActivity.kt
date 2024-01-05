@@ -123,11 +123,9 @@ class ExploreActivity : AppCompatActivity() {
         binding.recyclerSubCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false )
         binding.recyclerSubCategory.adapter = subCategoryAdapter
 
-        var category = binding.recyclerMainCategory
-        category.setOnClickListener(){
-            var intent = Intent(this@ExploreActivity, ExploreActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+        binding.recyclerMainCategory.setOnClickListener(onClicked)
+        binding.recyclerSubCategory.setOnClickListener(onClickedSub)
     }
+
+    private val onClicked = object : MainCategoryAdapter.OnItemCLickListener
 }
