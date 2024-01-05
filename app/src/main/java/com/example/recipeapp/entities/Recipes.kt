@@ -11,5 +11,8 @@ data class Recipes(
 
     // TODO: add other attributes
     @ColumnInfo(name = "dishName")
-    var dishName:String
+    var dishName:String,
+
+    @ColumnInfo(name = "categoryName")
+    var categoryName: String
 ): Serializable
