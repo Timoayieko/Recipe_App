@@ -2,6 +2,7 @@ package com.example.recipeapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipeapp.adapter.MainCategoryAdapter
@@ -123,9 +124,18 @@ class ExploreActivity : AppCompatActivity() {
         binding.recyclerSubCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false )
         binding.recyclerSubCategory.adapter = subCategoryAdapter
 
-        binding.recyclerMainCategory.setOnClickListener(onClicked)
-        binding.recyclerSubCategory.setOnClickListener(onClickedSub)
+//        binding.recyclerMainCategory.setOnClickListener(onClicked)
+
+        binding.recyclerSubCategory.setOnClickListener(onClickedSubItem)
     }
 
-    private val onClicked = object : MainCategoryAdapter.OnItemCLickListener
+    private val onClickedSubItem  = object : SubCategoryAdapter.OnItemClickListener,
+        View.OnClickListener {
+        override fun onClicked(id: String) {
+            val intent = Intent(this@ExploreActivity,RecipeActivity::class.java)
+            intent.putExtra("id",id)
+            startActivity(intent)
+        }
+    }
+
 }
