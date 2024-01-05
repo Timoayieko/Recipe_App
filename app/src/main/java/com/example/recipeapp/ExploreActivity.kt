@@ -126,16 +126,20 @@ class ExploreActivity : AppCompatActivity() {
 
 //        binding.recyclerMainCategory.setOnClickListener(onClicked)
 
-        binding.recyclerSubCategory.setOnClickListener(onClickedSubItem)
+        binding.recyclerSubCategory.setOnClickListener(object :
+            SubCategoryAdapter.OnItemClickListener {
+            val intent = Intent(this@ExploreActivity,RecipeActivity::class.java)
+            intent.putExtra("id", )
+            startActivity(intent)
+        })
     }
 
     private val onClickedSubItem  = object : SubCategoryAdapter.OnItemClickListener,
         View.OnClickListener {
         override fun onClicked(id: String) {
             val intent = Intent(this@ExploreActivity,RecipeActivity::class.java)
-            intent.putExtra("id",id)
+            intent.putExtra("id",arrSubCategory[].id)
             startActivity(intent)
         }
     }
-
 }
