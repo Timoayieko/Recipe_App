@@ -1,25 +1,23 @@
 package com.example.recipeapp.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.recipeapp.R
 import com.example.recipeapp.databinding.ItemRecyclerMainCategoryBinding
+import com.example.recipeapp.entities.Category
 import com.example.recipeapp.entities.Recipes
 
 class MainCategoryAdapter: RecyclerView.Adapter<MainCategoryAdapter.RecipeViewHolder>() {
 
-    var arrayMainCategory = ArrayList<Recipes>()
+    var arrayMainCategory = ArrayList<Category>()
     class RecipeViewHolder(
         val binding: ItemRecyclerMainCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
     }
 
-    fun setData(arrData: List<Recipes>){
-        arrayMainCategory = arrData as ArrayList<Recipes>
+    fun setData(arrData: ArrayList<Category>){
+        arrayMainCategory = arrData as ArrayList<Category>
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -32,6 +30,6 @@ class MainCategoryAdapter: RecyclerView.Adapter<MainCategoryAdapter.RecipeViewHo
     }
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
-        holder.binding.dishName.text = arrayMainCategory[position].dishName
+        holder.binding.dishName.text = arrayMainCategory[position].category
     }
 }

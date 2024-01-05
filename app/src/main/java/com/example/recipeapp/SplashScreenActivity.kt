@@ -16,7 +16,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.create
 
-class SplashScreenActivity : BaseActivity() {
+class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -31,29 +31,29 @@ class SplashScreenActivity : BaseActivity() {
         }
     }
 
-    fun getCategories(){
-        val service = RetrofitClientInstance.RetrofitInstance?.create(GetDataService::class.java)
-        val call = service?.getCategoryList()
-        if (call != null) {
-            call.enqueue(object : Callback<List<Category>>{
-                override fun onResponse(
-                    call: Call<List<Category>>,
-                    response: Response<List<Category>>
-                ) {
-                    insertDataToRoomDb(response.body())
-                }
+//    fun getCategories(){
+//        val service = RetrofitClientInstance.RetrofitInstance?.create(GetDataService::class.java)
+//        val call = service?.getCategoryList()
+//        if (call != null) {
+//            call.enqueue(object : Callback<List<Category>>{
+//                override fun onResponse(
+//                    call: Call<List<Category>>,
+//                    response: Response<List<Category>>
+//                ) {
+//                    insertDataToRoomDb(response.body())
+//                }
+//
+//                override fun onFailure(call: Call<List<Category>>, t: Throwable) {
+//                    val progress: ProgressBar = findViewById<ProgressBar>(R.id.loading)
+//                    progress.visibility = View.INVISIBLE
+//                    Toast.makeText(this@SplashScreenActivity, "Something went wrong :(", Toast.LENGTH_SHORT).show()
+//                }
+//
+//            })
+//        }
+//    }
 
-                override fun onFailure(call: Call<List<Category>>, t: Throwable) {
-                    val progress: ProgressBar = findViewById<ProgressBar>(R.id.loading)
-                    progress.visibility = View.INVISIBLE
-                    Toast.makeText(this@SplashScreenActivity, "Something went wrong :(", Toast.LENGTH_SHORT).show()
-                }
-
-            })
-        }
-    }
-
-    fun insertDataToRoomDb(category: List<Category>?){
-
-    }
+//    fun insertDataToRoomDb(category: List<Category>?){
+//
+//    }
 }

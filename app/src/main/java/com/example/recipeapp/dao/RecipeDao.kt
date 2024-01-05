@@ -9,14 +9,22 @@ import com.example.recipeapp.entities.Recipes
 
 @Dao
 interface RecipeDao {
-//    @get:Query(value = "SELECT * FROM recipes ORDER BY id DESC")
-//    val allRecipes: List<Recipes>
-    @get:Query(value = "SELECT * FROM category ORDER BY id DESC")
-    val getAllCategories: List<Category>
+    @get:Query(value = "SELECT * FROM recipes ORDER BY id DESC")
+    val allRecipes: List<Recipes>
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    fun  insertRecipe(recipe: Recipes)
+    @get: Query(value = "SELECT * FROM recipes WHERE category = 1 ORDER BY id DESC")
+    val allBreakfast: List<Recipes>
+
+    @get: Query(value = "SELECT * FROM recipes WHERE category = 2 ORDER BY id DESC")
+    val allLunch: List<Recipes>
+
+    @get: Query(value = "SELECT * FROM recipes WHERE category = 3 ORDER BY id DESC")
+    val allSupper: List<Recipes>
+
+    @get: Query(value = "SELECT * FROM recipes WHERE category = 4 ORDER BY id DESC")
+    val allSnack: List<Recipes>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun  insertCategory(category: Category)
-    // TODO: SQL functions 
+    fun  insertRecipe(recipe: Recipes)
+
 }

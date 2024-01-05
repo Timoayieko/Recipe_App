@@ -1,13 +1,10 @@
 package com.example.recipeapp.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.recipeapp.R
-import com.example.recipeapp.databinding.ItemRecyclerMainCategoryBinding
 import com.example.recipeapp.databinding.ItemRecyclerSubCategoryBinding
+import com.example.recipeapp.entities.Category
 import com.example.recipeapp.entities.Recipes
 
 class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.RecipeViewHolder>() {
@@ -19,7 +16,7 @@ class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.RecipeViewHold
 
     }
 
-    fun setData(arrData: List<Recipes>){
+    fun setData(arrData: ArrayList<Recipes>){
         arraySubCategory = arrData as ArrayList<Recipes>
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
