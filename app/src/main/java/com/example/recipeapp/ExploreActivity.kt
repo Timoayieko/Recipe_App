@@ -8,7 +8,7 @@ import com.example.recipeapp.adapter.SubCategoryAdapter
 import com.example.recipeapp.databinding.ActivityExploreBinding
 import com.example.recipeapp.entities.Recipes
 
-class ExploreActivity : AppCompatActivity() {
+class ExploreActivity : BaseActivity() {
     private lateinit var binding: ActivityExploreBinding
 
     var arrMainCategory = ArrayList<Recipes>()
