@@ -59,16 +59,16 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    implementation("com.github.bumptech.glide:4.11.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
+//    implementation("com.github.bumptech.glide:4.11.0")
+//    annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
 
 //   easy permissions
     implementation("pub.devrel:easypermissions:3.0.0")
 
 //    crop image lib
-    implementation("com.theartofdev.edmodo:android-image-cropper:2.8.0")
+//    implementation("com.theartofdev.edmodo:android-image-cropper:2.8.0")
 
 //    coroutines
-    implementation("org.jetbrains.kotlinx:kotlix-coroutines-core:1.4.1")
+//    implementation("org.jetbrains.kotlinx:kotlix-coroutines-core:1.4.1")
     
 }
