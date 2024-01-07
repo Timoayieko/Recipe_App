@@ -13,9 +13,6 @@ data class Category(
     @PrimaryKey(autoGenerate = true)
     var id:Int,
 
-    @ColumnInfo(name = "categoriesitem")
-    @Expose
-    @SerializedName("categoriesItem")
-    @TypeConverters(CategoryListConverter::class)
-    var categoriesitem: List<CategoryItems>? = null
+    @ColumnInfo(name = "category")
+    var category:String,
 )
