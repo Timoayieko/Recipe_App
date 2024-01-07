@@ -39,5 +39,12 @@ class MainCategoryAdapter: RecyclerView.Adapter<MainCategoryAdapter.RecipeViewHo
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         holder.binding.dishName.text = arrayMainCategory[position].category
+        holder.binding.root.setOnClickListener {
+            listener!!.OnClicked(arrayMainCategory[position].id)
+        }
+    }
+
+    interface OnItemClickListener{
+        fun OnClicked(categoryName: Int)
     }
 }

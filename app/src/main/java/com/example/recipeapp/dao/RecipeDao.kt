@@ -24,6 +24,8 @@ interface RecipeDao {
     @get: Query(value = "SELECT * FROM recipes WHERE category = 4 ORDER BY id DESC")
     val allSnack: List<Recipes>
 
+    @Query(value = "SELECT * FROM recipes WHERE category = :type ORDER BY id DESC")
+    fun retrieveType(type: Int): List<Recipes>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun  insertRecipe(recipe: Recipes)
 

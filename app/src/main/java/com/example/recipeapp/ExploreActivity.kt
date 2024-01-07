@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipeapp.adapter.MainCategoryAdapter
 import com.example.recipeapp.adapter.SubCategoryAdapter
+import com.example.recipeapp.database.RecipeDatabase
 import com.example.recipeapp.databinding.ActivityExploreBinding
 import com.example.recipeapp.entities.Category
 import com.example.recipeapp.entities.Recipes
@@ -36,85 +37,160 @@ class ExploreActivity : AppCompatActivity() {
 
 //      recipes
         arrSubCategory.add(Recipes(1,
-            "Ugali with Sukuma Wiki",
-            3,
-            4,
+            "Pesto Pasta with Cherry Tomatoes",
+            "Dinner",
+            "4",
             "beginner",
-            "2 cups maize flour,4 cups water,1 bunch collard greens, Salt to taste",
-            "Bring water to a boil in a pot.Add maize flour gradually, stirring continuously to avoid lumps.Keep stirring until the mixture thickens and forms a smooth consistency.Simmer for 15-20 minutes until fully cooked.Serve hot with sautéed collard greens."
-            ))
+            "- 8 oz pasta\n" +
+                    "- 1 cup fresh basil leaves\n" +
+                    "- 1/2 cup grated Parmesan cheese\n" +
+                    "- 1/3 cup pine nuts\n" +
+                    "- 2 cloves garlic\n" +
+                    "- 1/2 cup extra-virgin olive oil\n" +
+                    "- Cherry tomatoes, halved",
+            "1. Cook pasta according to package instructions.\n" +
+                    "2. Blend basil, Parmesan, pine nuts, and garlic in a food processor.\n" +
+                    "3. Gradually add olive oil while processing until smooth.\n" +
+                    "4. Toss cooked pasta with pesto sauce and cherry tomatoes."
+        ))
         arrSubCategory.add(Recipes(2,
-            "Nyama Choma",
-            2,
-            5,
+            "Teriyaki Salmon",
+            "Dinner",
+            "5",
             "intermediate",
-            "2 lbs beef or goat meat, cubed,Salt and pepper to taste,1 tablespoon vegetable oil,Skewers for grilling",
-            "Marinate the meat with salt, pepper, and oil.Thread the meat onto skewers.Grill over medium heat until cooked to desired doneness.Serve with your favorite side dishes or sauces."
+            "- 4 salmon fillets\n" +
+                    "- 1/2 cup soy sauce\n" +
+                    "- 1/4 cup mirin\n" +
+                    "- 2 tablespoons brown sugar\n" +
+                    "- 1 tablespoon grated ginger\n" +
+                    "- 2 cloves garlic, minced",
+            "1. Mix soy sauce, mirin, brown sugar, ginger, and garlic to make teriyaki sauce.\n" +
+                    "2. Marinate salmon in the sauce for at least 30 minutes.\n" +
+                    "3. Grill or bake salmon until cooked to your liking. Baste with teriyaki sauce while cooking."
         ))
         arrSubCategory.add(Recipes(3,
-            "Githeri",
-            2,
-            5,
+            "Mushroom Risotto",
+            "Dinner",
+            "2",
             "beginner",
-            "2 cups maize,2 cups beans,1 onion, chopped,2 tomatoes, diced,Salt and spices to taste",
-            "Boil maize and beans until soft.In a separate pan, sauté onions and tomatoes until tender.Add the cooked maize and beans to the sautéed mixture.Season with salt and spices.Simmer for an additional 15-20 minutes.Serve hot."
-            ))
+            "- 1 cup Arborio rice\n" +
+                    "- 4 cups chicken or vegetable broth, heated\n" +
+                    "- 1 cup mushrooms, sliced\n" +
+                    "- 1/2 cup dry white wine\n" +
+                    "- 1 onion, finely chopped\n" +
+                    "- 2 tablespoons butter\n" +
+                    "- 1/2 cup grated Parmesan cheese",
+            "1. Sauté onions in butter until translucent. Add mushrooms and cook until browned.\n" +
+                    "2. Stir in Arborio rice and cook until lightly toasted.\n" +
+                    "3. Pour in wine and cook until mostly absorbed.\n" +
+                    "4. Gradually add hot broth, stirring constantly until rice is creamy.\n" +
+                    "5. Stir in Parmesan cheese before serving."
+        ))
         arrSubCategory.add(Recipes(4,
-            "Chapo Beans",
-            3,
-            4,
-            "expert",
-            "2 cups all-purpose flour,Water for kneading,1 cup cooked beans,1 onion, chopped,Tomato sauce for serving",
-            "Mix flour with water to form a soft dough. Divide the dough into balls and roll out each ball into a flat, round chapati.Cook each chapati on a hot griddle until browned.In a separate pan, sauté onions and mix with cooked beans.Serve chapati with the bean mixture and tomato sauce."
-            ))
+            "Chicken Caesar Salad",
+            "Lunch",
+            "4",
+            "Beginner",
+            "- 2 boneless, skinless chicken breasts\n" +
+                    "- Romaine lettuce, chopped\n" +
+                    "- Croutons\n" +
+                    "- Grated Parmesan cheese\n" +
+                    "- Caesar dressing",
+            "1. Season chicken with salt and pepper, grill or pan-cook until done.\n" +
+                    "2. Slice cooked chicken into strips.\n" +
+                    "3. Toss lettuce with croutons, Parmesan, and chicken.\n" +
+                    "4. Drizzle with Caesar dressing and serve."
+        ))
         arrSubCategory.add(Recipes(5,
-            "mandazi",
-            1,
-            8,
-            "beginner",
-            "2 cups all-purpose flour",
-            "1/2 cup sugar,1/2 teaspoon baking powder,1/2 cup coconut milk,Vegetable oil for frying.In a bowl, mix flour, sugar, and baking powder.Add coconut milk to form a soft dough.Roll out the dough and cut it into small, triangular shapes.Heat vegetable oil in a pan and fry the mandazi until golden brown.Serve as a delightful snack."
+            "Stuffed Bell Peppers",
+            "Dinner",
+            "6",
+            "Intermediate",
+            "- 4 bell peppers, halved and cleaned\n" +
+                    "- 1 lb ground beef or turkey\n" +
+                    "- 1 cup cooked rice\n" +
+                    "- 1 can black beans, drained and rinsed\n" +
+                    "- 1 cup corn kernels\n" +
+                    "- 1 cup tomato sauce",
+            "1. Brown ground meat in a pan, then mix with cooked rice, black beans, corn, and tomato sauce.\n" +
+                    "2. Stuff bell peppers with the mixture.\n" +
+                    "3. Bake until peppers are tender."
         ))
         arrSubCategory.add(Recipes(6,
-            "Sukuma Wiki Stew",
-            3,
-            4,
-            "intermediate",
-            "1 bunch sukuma wiki (collard greens), chopped,2 tomatoes, diced,1 onion, chopped,2 tablespoons vegetable oil,Spices and salt to taste",
-            "Sauté onions in vegetable oil until golden brown.Add diced tomatoes and cook until soft.Add chopped sukuma wiki and spices.Simmer until the greens are tender.Serve as a side dish."
+            "Greek Salad",
+            "Breakfast",
+            "2",
+            "Beginner",
+            "- 1 cucumber, diced\n" +
+                    "- 4 tomatoes, diced\n" +
+                    "- 1 red onion, thinly sliced\n" +
+                    "- Kalamata olives\n" +
+                    "- Feta cheese, crumbled\n" +
+                    "- Olive oil\n" +
+                    "- Red wine vinegar",
+            "1. Combine cucumber, tomatoes, onion, olives, and feta in a bowl.\n" +
+                    "2. Drizzle with olive oil and red wine vinegar.\n" +
+                    "3. Toss gently and serve."
         ))
         arrSubCategory.add(Recipes(7,
-            "Irio",
-            3,
-            4,
-            "intermediate",
-            "2 cups green peas, boiled,4 large potatoes, boiled and mashed,1 cup corn kernels, cooked,1 onion, chopped,Gravy for serving",
-            "Mix boiled peas, mashed potatoes, cooked corn, and chopped onions in a bowl.Mash the ingredients together until well combined.Serve hot with gravy."
-            ))
+            "Vegetable Stir-Fry",
+            "Dinner",
+            "4",
+            "Beginner",
+            "- 2 cups broccoli florets\n" +
+                    "- 1 bell pepper, sliced\n" +
+                    "- 1 carrot, julienned\n" +
+                    "- 1 cup snap peas\n" +
+                    "- 1 cup tofu or chicken, cubed\n" +
+                    "- Soy sauce\n" +
+                    "- Sesame oil",
+            "1. Sauté tofu or chicken until cooked.\n" +
+                    "2. Add vegetables and stir-fry until crisp-tender.\n" +
+                    "3. Drizzle with soy sauce and a splash of sesame oil."
+        ))
         arrSubCategory.add(Recipes(8,
-            "Pilau",
-            2,
-            6,
-            "intermediate",
-            "2 cups basmati rice,1 lb beef or chicken, cubed,2 onions, finely chopped,2 tomatoes, diced,2 tablespoons pilau masala,Vegetable oil for cooking",
-            "In a pan, sauté onions until golden brown.Add diced tomatoes and cook until soft.Add meat cubes and cook until browned.Add pilau masala and stir well.Add rice and cook for a few minutes.Pour in water, cover, and simmer until rice is cooked.Serve hot with your favorite side dishes."
-            ))
+            "Classic Margherita Pizza",
+            "Snack",
+            "6",
+            "Intermediate",
+            "- Pizza dough\n" +
+                    "- Tomato sauce\n" +
+                    "- Fresh mozzarella, sliced\n" +
+                    "- Fresh basil leaves\n" +
+                    "- Olive oil",
+            "1. Roll out pizza dough and spread tomato sauce.\n" +
+                    "2. Top with mozzarella slices and fresh basil.\n" +
+                    "3. Drizzle with olive oil and bake until crust is golden.",
+        ))
         arrSubCategory.add(Recipes(9,
-            "Masala Chips",
-            4,
-            4,
-            "intermediate",
-            "4 large potatoes, peeled and sliced,1 tablespoon vegetable oil,1 teaspoon chili powder,1 teaspoon cumin powder,Salt to taste",
-            "Preheat the oven to 400°F (200°C).In a bowl, toss potato slices with vegetable oil, chili powder, cumin powder, and salt.Spread the seasoned potato slices on a baking sheet.Bake in the preheated oven until golden and crispy.Serve hot as a flavorful snack."
-            ))
+            "Honey Mustard Glazed Salmon",
+            "Dinner",
+            "4",
+            "Intermediate",
+            "- 4 salmon fillets\n" +
+                    "- 1/4 cup Dijon mustard\n" +
+                    "- 2 tablespoons honey\n" +
+                    "- 1 tablespoon soy sauce\n" +
+                    "- Lemon wedges",
+            "1. Mix mustard, honey, and soy sauce to create the glaze.\n" +
+                    "2. Brush salmon with glaze and bake until cooked.\n" +
+                    "3. Serve with lemon wedges."
+        ))
         arrSubCategory.add(Recipes(10,
-            "Samosa",
-            4,
-            8,
-            "expert",
-            "2 cups all-purpose flour,1/4 cup vegetable oil,1 cup boiled and mashed potatoes,1/2 cup cooked peas,1 teaspoon cumin seeds,1 teaspoon garam masala,Vegetable oil for frying",
-            "In a bowl, mix flour and oil to form a crumbly texture.Add water gradually to form a smooth dough.Divide the dough into small balls and roll out each ball into a thin circle.In a separate bowl, mix mashed potatoes, cooked peas, cumin seeds, and garam masala.Place a portion of the filling in the center of each dough circle and fold it into a triangular shape.Seal the edges and deep-fry until golden brown.Serve hot with chutney or sauce."
-            ))
+            "Crispy Baked Zucchini Fries",
+            "Snack",
+            "4",
+            "Beginner",
+            "- 2 zucchinis, cut into fries\n" +
+                    "- 1 cup breadcrumbs\n" +
+                    "- 1/2 cup grated Parmesan cheese\n" +
+                    "- 2 eggs, beaten\n" +
+                    "- Marinara sauce for dipping",
+            "1. Preheat oven to 425°F (220°C).\n" +
+                    "2. Dip zucchini fries in beaten eggs, then coat with a mixture of breadcrumbs and Parmesan.\n" +
+                    "3. Place on a baking sheet and bake until golden and crispy.\n" +
+                    "4. Serve with marinara sauce."
+        ))
 
         subCategoryAdapter.setData(arrSubCategory)
 
@@ -124,22 +200,6 @@ class ExploreActivity : AppCompatActivity() {
         binding.recyclerSubCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false )
         binding.recyclerSubCategory.adapter = subCategoryAdapter
 
-//        binding.recyclerMainCategory.setOnClickListener(onClicked)
 
-        binding.recyclerSubCategory.setOnClickListener(object :
-            SubCategoryAdapter.OnItemClickListener {
-            val intent = Intent(this@ExploreActivity,RecipeActivity::class.java)
-            intent.putExtra("id", )
-            startActivity(intent)
-        })
-    }
-
-    private val onClickedSubItem  = object : SubCategoryAdapter.OnItemClickListener,
-        View.OnClickListener {
-        override fun onClicked(id: String) {
-            val intent = Intent(this@ExploreActivity,RecipeActivity::class.java)
-            intent.putExtra("id",arrSubCategory[].id)
-            startActivity(intent)
-        }
     }
 }

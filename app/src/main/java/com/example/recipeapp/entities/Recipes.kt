@@ -15,13 +15,10 @@ data class Recipes(
     var dishName:String,
 //  type
     @ColumnInfo(name = "category")
-    @Relation(
-        parentColumn = "category",
-        entityColumn = "id")
-    val category: Int,
+    val category: String,
 //  number of servings
     @ColumnInfo(name = "serves")
-    var serves:Int,
+    var serves:String,
 //  difficulty level
     @ColumnInfo(name = "difficulty")
     var difficulty:String,

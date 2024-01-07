@@ -1,29 +1,28 @@
 package com.example.recipeapp.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recipeapp.RecipeActivity
 import com.example.recipeapp.databinding.ItemRecyclerSubCategoryBinding
 import com.example.recipeapp.entities.Category
 import com.example.recipeapp.entities.Recipes
 
 class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.RecipeViewHolder>() {
-
-    var listener: SubCategoryAdapter.OnItemClickListener? = null
-    var ctx: Context? = null
+    var ctx : Context? = null
     var arraySubCategory = ArrayList<Recipes>()
     class RecipeViewHolder(
         val binding: ItemRecyclerSubCategoryBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-    }
+        RecyclerView.ViewHolder(binding.root)
 
     fun setData(arrData: ArrayList<Recipes>){
         arraySubCategory = arrData as ArrayList<Recipes>
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         ctx = parent.context
@@ -35,18 +34,19 @@ class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.RecipeViewHold
         return arraySubCategory.size
     }
 
-    fun setClickListener(l1: SubCategoryAdapter.OnItemClickListener){
-        listener = l1
-    }
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         holder.binding.dishName.text = arraySubCategory[position].dishName
 
-        holder.itemView.rootView.setOnClickListener{
-            listener!!.onClicked(arraySubCategory[position].id.toString())
+        holder.binding.cardView.setOnClickListener{
+            val intent = Intent(ctx, RecipeActivity::class.java).apply {
+                putExtra("dishName", arraySubCategory[position].dishName)
+                putExtra("category", arraySubCategory[position].category)
+                putExtra("serves", arraySubCategory[position].serves)
+                putExtra("difficulty", arraySubCategory[position].difficulty)
+                putExtra("ingredients", arraySubCategory[position].ingredients)
+                putExtra("steps", arraySubCategory[position].steps)
+            }
+            ctx?.startActivity(intent)
         }
-    }
-
-    interface OnItemClickListener{
-        fun onClicked(id:String)
     }
 }
